@@ -1,0 +1,59 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`independent background suggestions > records exact input before dispatch and never appends to the main Session 1`] = `
+{
+  "maxTokens": 128,
+  "messages": [
+    {
+      "content": [
+        {
+          "text": "{"transcript":[{"role":"user","text":"解释一下这个插件。"},{"role":"assistant","text":"插件会在回复完成后生成下一句话建议。"}]}",
+          "type": "text",
+        },
+      ],
+      "role": "user",
+    },
+  ],
+  "route": [
+    "fixture",
+    "fixture",
+  ],
+  "suggestion": {
+    "requestSeq": 4,
+    "text": "给我看一个具体例子。",
+    "turn": 1,
+  },
+  "system": "[SUGGESTION MODE: Suggest what the user might naturally type next into the assistant.]
+
+Use only the conversation provided below. Do not assume facts, intent, or context that are not present.
+
+Your job is to predict what THEY would type next — not what you think they should do.
+
+Would they think: "I was just about to type that"?
+
+When the next step is not obvious, output nothing.
+
+NEVER SUGGEST:
+- Evaluative comments ("looks good", "thanks")
+- Questions ("what about...?")
+- Assistant-voice text ("Let me...", "I'll...", "Here's...")
+- New ideas or tasks the user did not request
+- A new goal, direction, or unrelated action
+- Multiple sentences
+- Unsafe, sensitive, privacy-invasive, or inappropriate actions
+
+EXAMPLES:
+User asked "fix the bug and run tests", and the bug is fixed → "run the tests"
+After code is written → "try it out"
+The assistant offers options → suggest the option the user would most likely choose
+The assistant asks whether to continue → "yes" or "go ahead"
+The task is complete and the next step is obvious → "commit this" or "push it"
+After an error or misunderstanding → output nothing
+
+Be specific: "run the tests" is better than "continue".
+
+Format: one short, concise phrase in the user's language, no longer than the configured limit. Or nothing.
+
+Reply with exactly one line containing only the suggestion, without quotes or explanation.",
+}
+`;

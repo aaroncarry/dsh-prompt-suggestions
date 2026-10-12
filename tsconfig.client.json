@@ -1,0 +1,5 @@
+{
+  "extends": "./tsconfig.shared.json",
+  "compilerOptions": { "outDir": "lib/types/client", "lib": ["ES2024", "DOM", "DOM.Iterable"], "types": ["react"] },
+  "include": ["src/client/**/*.ts", "src/client/**/*.tsx", "src/types.ts"]
+}

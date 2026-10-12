@@ -1,0 +1,20 @@
+[data-dsh-prompt-suggestion] [data-composer-placeholder] { visibility: hidden; }
+.dsh-prompt-suggestion {
+  position: absolute;
+  inset: 12px auto auto 14px;
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  max-width: calc(100% - 28px);
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--dsw-alias-label-secondary);
+  font: inherit;
+  text-align: start;
+  cursor: pointer;
+}
+.dsh-prompt-suggestion-text { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.dsh-prompt-suggestion-key { flex: none; font-size: 12px; }
+.dsh-prompt-suggestion:focus-visible { outline: 2px solid var(--dsw-alias-state-business-primary); outline-offset: 2px; border-radius: var(--dsw-radius-sm); }
+@media (max-width: 480px) { .dsh-prompt-suggestion-key { display: none; } }

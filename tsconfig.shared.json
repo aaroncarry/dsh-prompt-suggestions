@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "target": "ES2024", "module": "NodeNext", "moduleResolution": "NodeNext",
+    "strict": true, "noUncheckedIndexedAccess": true, "exactOptionalPropertyTypes": true,
+    "noUnusedLocals": true, "noUnusedParameters": true, "skipLibCheck": true,
+    "declaration": true, "emitDeclarationOnly": true, "rewriteRelativeImportExtensions": true,
+    "rootDir": "src", "types": ["node"], "jsx": "react-jsx"
+  }
+}

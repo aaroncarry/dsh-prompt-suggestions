@@ -1,0 +1,12 @@
+- insert:
+    - id: prompt-suggestions
+      name: '@aaroncarry/dsh-prompt-suggestions'
+      config:
+        enabled: true
+        maxContextMessages: 12
+        maxInputBytes: 16384
+        maxOutputTokens: 128
+        maxResponseBytes: 32768
+        maxSuggestionChars: 160
+        timeoutMs: 8000
+        temperature: 0.3

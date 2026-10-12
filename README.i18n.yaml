@@ -1,0 +1,40 @@
+# Bilingual-pair consistency record for README.md (docs/i18n/README.md): per heading
+# section, a hash of its English and Chinese blocks outside code blocks and generated regions.
+# After editing either side, bring the other along and re-record with:
+#   pnpm run verify-translation-pairing --write README.md
+/:
+  en: 2f7c2fade54de1cd
+  zh: b3982a0790e823e8
+/aaroncarry-dsh-prompt-suggestions:
+  en: 8904788dcd719bdb
+  zh: 174f51449c8bf835
+/aaroncarry-dsh-prompt-suggestions/summary:
+  en: 361c58c5ab24a7a4
+  zh: 3dd82414bc058652
+/aaroncarry-dsh-prompt-suggestions/table-of-contents:
+  en: d152484eb41ac6b4
+  zh: ffaa195a3bc6644d
+/aaroncarry-dsh-prompt-suggestions/use-this-package:
+  en: bbff250eba0f1b89
+  zh: b20a47f82d8ab6e0
+/aaroncarry-dsh-prompt-suggestions/use-this-package/compatibility-and-installation:
+  en: 802de3b7cd113a9b
+  zh: 6201c8170c7e40b3
+/aaroncarry-dsh-prompt-suggestions/use-this-package/controls-and-configuration:
+  en: 0becf0c2bbb7d8c5
+  zh: 9a1c6d3931b3c56b
+/aaroncarry-dsh-prompt-suggestions/understand-the-implementation:
+  en: 08b06e3af8d6698e
+  zh: 40634ce1c95dd1ed
+/aaroncarry-dsh-prompt-suggestions/further-exploration:
+  en: d89229827e65fe18
+  zh: 291bf3e1fbd8ac4a
+/aaroncarry-dsh-prompt-suggestions/model-experience:
+  en: c4d317d4736ad45b
+  zh: c21f4f92d7735ba6
+/aaroncarry-dsh-prompt-suggestions/known-limitations-and-deferred-work:
+  en: 99fedbaadc7514fc
+  zh: f5daaa57fe775f81
+/aaroncarry-dsh-prompt-suggestions/known-limitations-and-deferred-work/dev-note:
+  en: 4bb6d7976e4913cb
+  zh: 4c462ba92224eaad
