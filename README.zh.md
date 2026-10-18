@@ -27,12 +27,12 @@ kind: "package-bundle"
 
 ### 兼容性与安装
 
-这个独立插件使用 DSH `0.2.0-rc.2` 已有的 Connection、Storage Domain、Session 和 LLM 服务，不需要修改 DSH 源码或安装版运行时。开发依赖链接到同级 `deepseek-harness` 仓库；安装后的包只使用生产依赖和应用提供的 peer。使用 Desktop 自带的 `dsh` 命令管理 Desktop profile 前，需要完全退出 Desktop。
+这个独立插件使用 DSH `0.2.0-rc.2` 至 `0.2.1-rc.2` 已有的 Connection、Storage Domain、Session 和 LLM 服务。DSH 只依据它的 `engines.dsh` 范围（`>=0.2.0-rc.2 <0.3.0`）判定兼容性，peer 范围重复该声明供安装器读取。不需要修改 DSH 源码或安装版运行时。开发依赖链接到同级 `deepseek-harness` 仓库；安装后的包只使用生产依赖和应用提供的 peer。使用 Desktop 自带的 `dsh` 命令管理 Desktop profile 前，需要完全退出 Desktop。
 
 从 npm 将已发布的包安装到使用的 profile：
 
 ```text
-dsh plugin --profile desktop add @aaroncarry/dsh-prompt-suggestions@0.1.4
+dsh plugin --profile desktop add @aaroncarry/dsh-prompt-suggestions@0.1.5
 ```
 
 浏览器 profile 可将 `desktop` 替换为 `web`。执行 `dsh plugin --profile desktop remove @aaroncarry/dsh-prompt-suggestions` 可移除。若要测试尚未发布的本地构建，可执行 `pnpm install && pnpm pack`，再将生成的 tarball 路径传给同样的 `dsh plugin ... add` 命令。
@@ -103,13 +103,13 @@ Client 注册 `conversation.input.overlay`，通过公开的、带草稿版本�
 <a id="known-limitations-and-deferred-work"></a>
 ## 已知限制与后续工作
 
-本包目前通过现有插件 API 支持 DSH `0.2.0-rc.2`。在 DSH 提供公开的占位文本和键盘扩展 API 前，composer 的 DOM 选择器是兼容性依赖。仅实现空草稿建议，尚无部分文本续写、多候选、每会话偏好开关或反馈排序。主调用统计不汇总辅助用量；插件存储的调用记录保留了这些数据供检查。适配器忽略取消时，插件卸载可能需要等待适配器自行结束。
+本包目前通过现有插件 API 支持 DSH `0.2.0-rc.2` 至 `0.2.1-rc.2`。在 DSH 提供公开的占位文本和键盘扩展 API 前，composer 的 DOM 选择器是兼容性依赖。仅实现空草稿建议，尚无部分文本续写、多候选、每会话偏好开关或反馈排序。主调用统计不汇总辅助用量；插件存储的调用记录保留了这些数据供检查。适配器忽略取消时，插件卸载可能需要等待适配器自行结束。
 
 ### Dev Note
 
 <details>
 <summary>开发与验证 — 点击展开</summary>
 
-执行 `pnpm run typecheck`、`pnpm test` 和 `pnpm run build`。`pnpm run test:profile` 通过源码 CLI 启动真实且隔离的 DSH Web profile，仅将外部模型替换为确定性适配器。它检查生成、接受、显式发送、关闭、输入隐藏、浏览器重载、两种主题，以及未加载插件时的持久化事件重建。此检查需要同级 DSH 仓库已构建并安装 Playwright Chromium；可用 `DSH_REPO` 选择其他仓库。截图和日志写入 `.test-output`，临时 home 保留用于检查。单元测试包含记录模型输入与建议的快照。确定性检查不声称测量了真实提供方的质量或延迟。
+执行 `pnpm run typecheck`、`pnpm test` 和 `pnpm run build`。`pnpm run test:profile` 通过源码 CLI 启动真实且隔离的 DSH Web profile，仅将外部模型替换为确定性适配器。它检查生成、接受、显式发送、关闭、输入隐藏、浏览器重载、两种主题，以及未加载插件时的持久化事件重建。此检查需要同级 DSH 仓库位于本包 `engines.dsh` 范围覆盖的版本、已完成构建并安装 Playwright Chromium；可用 `DSH_REPO` 选择其他仓库。`pnpm run test:install` 改为通过 CLI 驱动一个隔离 profile，`DSH_INSTALLED_ROOT` 可让它使用已安装 Desktop 自带的 CLI。截图和日志写入 `.test-output`，临时 home 保留用于检查。单元测试包含记录模型输入与建议的快照。确定性检查不声称测量了真实提供方的质量或延迟。
 
 </details>

@@ -27,12 +27,12 @@ This optional profile layer suggests one next human message after a successful r
 
 ### Compatibility and installation
 
-This standalone plugin uses the existing Connection, Storage Domain, Session, and LLM services in DSH `0.2.0-rc.2`. No DSH source or installed-runtime patch is required. Development dependencies link to a sibling `deepseek-harness` checkout; the packed installation uses only production dependencies and the application-provided peers. Fully quit Desktop before using its bundled `dsh` command to manage the Desktop profile.
+This standalone plugin uses the existing Connection, Storage Domain, Session, and LLM services in DSH `0.2.0-rc.2` through `0.2.1-rc.2`. Its `engines.dsh` range (`>=0.2.0-rc.2 <0.3.0`) is the single requirement DSH checks; the peer ranges repeat it for installers. No DSH source or installed-runtime patch is required. Development dependencies link to a sibling `deepseek-harness` checkout; the packed installation uses only production dependencies and the application-provided peers. Fully quit Desktop before using its bundled `dsh` command to manage the Desktop profile.
 
 Install the published package from npm in the profile you use:
 
 ```text
-dsh plugin --profile desktop add @aaroncarry/dsh-prompt-suggestions@0.1.4
+dsh plugin --profile desktop add @aaroncarry/dsh-prompt-suggestions@0.1.5
 ```
 
 Replace `desktop` with `web` for the browser profile. Remove it with `dsh plugin --profile desktop remove @aaroncarry/dsh-prompt-suggestions`. To test an unpublished local build instead, run `pnpm install && pnpm pack` and pass the resulting tarball path to the same `dsh plugin ... add` command.
@@ -103,13 +103,13 @@ Suggestion reads verify the stored trigger against the live main-session log; in
 <a id="known-limitations-and-deferred-work"></a>
 ## Known Limitations and Deferred Work
 
-The package currently targets DSH `0.2.0-rc.2` through its existing plugin APIs. Its composer DOM selectors are a compatibility dependency until DSH exposes public placeholder and keyboard-extension APIs. Only empty-draft suggestions are implemented; partial-text completion, multiple candidates, per-session preference controls, and feedback ranking are absent. Main-call statistics do not aggregate auxiliary usage; the plugin's stored call records retain it for inspection. Generations whose adapters ignore cancellation may delay plugin unloading until those adapters settle.
+The package currently targets DSH `0.2.0-rc.2` through `0.2.1-rc.2` through its existing plugin APIs. Its composer DOM selectors are a compatibility dependency until DSH exposes public placeholder and keyboard-extension APIs. Only empty-draft suggestions are implemented; partial-text completion, multiple candidates, per-session preference controls, and feedback ranking are absent. Main-call statistics do not aggregate auxiliary usage; the plugin's stored call records retain it for inspection. Generations whose adapters ignore cancellation may delay plugin unloading until those adapters settle.
 
 ### Dev Note
 
 <details>
 <summary>Development and verification — click to expand</summary>
 
-Run `pnpm run typecheck`, `pnpm test`, and `pnpm run build`. `pnpm run test:profile` launches a real isolated DSH Web profile through the source CLI and replaces only the external model with a deterministic adapter. It checks generation, acceptance, explicit sending, dismissal, typing suppression, browser reload, both themes, and reconstruction of persisted events without the plugin. This check needs the sibling DSH checkout built and its Playwright Chromium installed; `DSH_REPO` selects a different checkout. Screenshots and logs are written under `.test-output`; temporary homes stay available for inspection. Unit tests include a recorded model-input and suggestion snapshot. No real-provider quality or latency measurement is claimed by the deterministic check.
+Run `pnpm run typecheck`, `pnpm test`, and `pnpm run build`. `pnpm run test:profile` launches a real isolated DSH Web profile through the source CLI and replaces only the external model with a deterministic adapter. It checks generation, acceptance, explicit sending, dismissal, typing suppression, browser reload, both themes, and reconstruction of persisted events without the plugin. This check needs a sibling DSH checkout at a release inside this package's `engines.dsh` range, built, with its Playwright Chromium installed; `DSH_REPO` selects a different checkout. `pnpm run test:install` instead drives an isolated profile through a CLI, and `DSH_INSTALLED_ROOT` points it at the installed Desktop's bundled CLI. Screenshots and logs are written under `.test-output`; temporary homes stay available for inspection. Unit tests include a recorded model-input and suggestion snapshot. No real-provider quality or latency measurement is claimed by the deterministic check.
 
 </details>
